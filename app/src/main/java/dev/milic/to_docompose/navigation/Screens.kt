@@ -6,12 +6,12 @@ import dev.milic.to_docompose.util.Constants.LIST_SCREEN
 
 class Screens(navHostController: NavHostController) {
     val list: (Action) -> Unit = { action ->
-        navHostController.navigate("list/${action.name}") {
+        navHostController.navigate(route = "list/${action.name}") {
             popUpTo(LIST_SCREEN) { inclusive = true }
         }
     }
 
-    val task: (Int) -> Unit ={taskId ->
-        navHostController.navigate("task/$taskId")
+    val task: (Int) -> Unit = { taskId ->
+        navHostController.navigate(route = "task/$taskId")
     }
 }
