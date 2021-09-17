@@ -35,7 +35,9 @@ fun ListScreen(
         floatingActionButton = {
             ListFab(onFabClicked = navigateToTaskScreen)
         },
-        content = {},
+        content = {
+            ListContent()
+        },
     )
 }
 
