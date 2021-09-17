@@ -5,11 +5,13 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import dev.milic.to_docompose.ui.screens.list.ListScreen
+import dev.milic.to_docompose.ui.viewmodels.SharedViewModel
 import dev.milic.to_docompose.util.Constants.LIST_ARGUMENT_KEY
 import dev.milic.to_docompose.util.Constants.LIST_SCREEN
 
 fun NavGraphBuilder.listComposable(
-    navigateToTaskScreen: (taskId: Int) -> Unit
+    navigateToTaskScreen: (taskId: Int) -> Unit,
+    sharedViewModel: SharedViewModel
 ) {
     composable(
         route = LIST_SCREEN,
@@ -19,6 +21,9 @@ fun NavGraphBuilder.listComposable(
             },
         )
     ) {
-        ListScreen(navigateToTaskScreen = navigateToTaskScreen)
+        ListScreen(
+            navigateToTaskScreen = navigateToTaskScreen,
+            sharedViewModel = sharedViewModel
+        )
     }
 }

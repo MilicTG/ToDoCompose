@@ -6,10 +6,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import dev.milic.to_docompose.navigation.destinations.listComposable
 import dev.milic.to_docompose.navigation.destinations.taskComposable
+import dev.milic.to_docompose.ui.viewmodels.SharedViewModel
 import dev.milic.to_docompose.util.Constants.LIST_SCREEN
 
 @Composable
-fun SetupNavigation(navHostController: NavHostController) {
+fun SetupNavigation(
+    navHostController: NavHostController,
+    sharedViewModel: SharedViewModel
+) {
     val screen = remember(navHostController) {
         Screens(navHostController = navHostController)
     }
@@ -20,7 +24,8 @@ fun SetupNavigation(navHostController: NavHostController) {
     )
     {
         listComposable(
-            navigateToTaskScreen = screen.task
+            navigateToTaskScreen = screen.task,
+            sharedViewModel = sharedViewModel
         )
         taskComposable(
             navigateToListScreen = screen.list
