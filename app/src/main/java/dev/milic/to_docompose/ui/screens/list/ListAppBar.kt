@@ -1,28 +1,37 @@
 package dev.milic.to_docompose.ui.screens.list
 
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import dev.milic.to_docompose.ui.theme.topAppBarBackgroundColor
-import dev.milic.to_docompose.ui.theme.topAppBarContentColor
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
 import dev.milic.to_docompose.R
 import dev.milic.to_docompose.components.PriorityItem
 import dev.milic.to_docompose.data.models.Priority
-import dev.milic.to_docompose.ui.theme.LARGE_PADDING
-import dev.milic.to_docompose.ui.theme.Typography
+import dev.milic.to_docompose.ui.theme.*
 
 @Composable
 fun ListAppBar() {
-    DefaultListAppBar(
-        onSearchClicked = {},
-        onSortClicked = {},
-        onDeleteClicked = {}
-    )
+//    DefaultListAppBar(
+//        onSearchClicked = {},
+//        onSortClicked = {},
+//        onDeleteClicked = {}
+//    )
+    SearchAppBar(text = "", onTextChange = {}, onCloseClicked = { /*TODO*/ }) {
+
+    }
 }
 
 @Composable
@@ -136,5 +145,80 @@ fun DeleteAllAction(
                 )
             }
         }
+    }
+}
+
+@Composable
+fun SearchAppBar(
+    text: String,
+    onTextChange: (String) -> Unit,
+    onCloseClicked: () -> Unit,
+    onSearchClicked: (String) -> Unit
+) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(TOP_APP_BAR_HEIGHT),
+        elevation = AppBarDefaults.TopAppBarElevation,
+        color = MaterialTheme.colors.topAppBarBackgroundColor
+    ) {
+        TextField(
+            modifier = Modifier
+                .fillMaxWidth(),
+            value = text,
+            onValueChange = {
+                onTextChange(it)
+            },
+            placeholder = {
+                Text(
+                    modifier = Modifier.alpha(ContentAlpha.medium),
+                    text = "Search",
+                    color = Color.White
+                )
+            },
+            textStyle = TextStyle(
+                color = MaterialTheme.colors.topAppBarContentColor,
+                fontSize = MaterialTheme.typography.subtitle1.fontSize
+            ),
+            singleLine = true,
+            leadingIcon = {
+                IconButton(
+                    onClick = {},
+                    modifier = Modifier.alpha(ContentAlpha.disabled)
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Search,
+                        contentDescription = stringResource(R.string.search_icon),
+                        tint = MaterialTheme.colors.topAppBarContentColor
+                    )
+                }
+            },
+            trailingIcon = {
+                IconButton(
+                    onClick = { onCloseClicked() }
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Close,
+                        contentDescription = stringResource(R.string.close_icon),
+                        tint = MaterialTheme.colors.topAppBarContentColor
+                    )
+                }
+            },
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Search
+            ),
+            keyboardActions = KeyboardActions(
+                onSearch = {
+                    onSearchClicked(text)
+                }
+            ),
+            colors = TextFieldDefaults.textFieldColors(
+                cursorColor = MaterialTheme.colors.topAppBarContentColor,
+                focusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                backgroundColor = Color.Transparent
+            )
+        )
     }
 }
