@@ -2,6 +2,8 @@ package dev.milic.to_docompose.ui.screens.list
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -16,8 +18,13 @@ import dev.milic.to_docompose.data.models.ToDoTask
 import dev.milic.to_docompose.ui.theme.*
 
 @Composable
-fun ListContent() {
-
+fun ListContent(
+    tasks: List<ToDoTask>,
+    navigateToTaskScreen: (taskId: Int) -> Unit
+) {
+    LazyColumn{
+        
+    }
 }
 
 @ExperimentalMaterialApi
