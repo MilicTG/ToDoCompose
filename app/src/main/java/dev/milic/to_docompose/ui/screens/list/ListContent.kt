@@ -17,13 +17,24 @@ import androidx.compose.ui.text.style.TextOverflow
 import dev.milic.to_docompose.data.models.ToDoTask
 import dev.milic.to_docompose.ui.theme.*
 
+@ExperimentalMaterialApi
 @Composable
 fun ListContent(
     tasks: List<ToDoTask>,
     navigateToTaskScreen: (taskId: Int) -> Unit
 ) {
-    LazyColumn{
-        
+    LazyColumn {
+        items(
+            items = tasks,
+            key = { task ->
+                task.id
+            }
+        ) { task ->
+            TaskItem(
+                toDoTask = task,
+                navigateToTaskScreen = navigateToTaskScreen
+            )
+        }
     }
 }
 

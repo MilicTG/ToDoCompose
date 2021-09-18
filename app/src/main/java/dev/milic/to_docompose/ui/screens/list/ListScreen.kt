@@ -1,9 +1,6 @@
 package dev.milic.to_docompose.ui.screens.list
 
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
@@ -17,17 +14,18 @@ import dev.milic.to_docompose.ui.theme.fabBackgroundColor
 import dev.milic.to_docompose.ui.viewmodels.SharedViewModel
 import dev.milic.to_docompose.util.SearchAppBarState
 
+@ExperimentalMaterialApi
 @Composable
 fun ListScreen(
     navigateToTaskScreen: (taskId: Int) -> Unit,
     sharedViewModel: SharedViewModel
 ) {
 
-    LaunchedEffect(key1 = true){
+    LaunchedEffect(key1 = true) {
         sharedViewModel.getAllTasks()
     }
-    
-    val allTasks = sharedViewModel.allTasks.collectAsState()
+
+    val allTasks by sharedViewModel.allTasks.collectAsState()
 
     val searchAppBarState: SearchAppBarState by sharedViewModel.searchAppBarState
     val searchTextState: String by sharedViewModel.searchTextState
@@ -44,7 +42,10 @@ fun ListScreen(
             ListFab(onFabClicked = navigateToTaskScreen)
         },
         content = {
-            ListContent()
+            ListContent(
+                tasks = allTasks,
+                navigateToTaskScreen = navigateToTaskScreen
+            )
         },
     )
 }

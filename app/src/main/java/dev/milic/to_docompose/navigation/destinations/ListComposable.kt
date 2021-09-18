@@ -1,5 +1,6 @@
 package dev.milic.to_docompose.navigation.destinations
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -9,6 +10,7 @@ import dev.milic.to_docompose.ui.viewmodels.SharedViewModel
 import dev.milic.to_docompose.util.Constants.LIST_ARGUMENT_KEY
 import dev.milic.to_docompose.util.Constants.LIST_SCREEN
 
+@ExperimentalMaterialApi
 fun NavGraphBuilder.listComposable(
     navigateToTaskScreen: (taskId: Int) -> Unit,
     sharedViewModel: SharedViewModel
