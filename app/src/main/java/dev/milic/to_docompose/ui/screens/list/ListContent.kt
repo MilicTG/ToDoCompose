@@ -16,21 +16,24 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import dev.milic.to_docompose.data.models.ToDoTask
 import dev.milic.to_docompose.ui.theme.*
+import dev.milic.to_docompose.util.RequestState
 
 @ExperimentalMaterialApi
 @Composable
 fun ListContent(
-    tasks: List<ToDoTask>,
+    tasks: RequestState<List<ToDoTask>>,
     navigateToTaskScreen: (taskId: Int) -> Unit
 ) {
-    if (tasks.isEmpty()) {
-        EmptyContent()
-    } else {
-        DisplayTasks(
-            tasks = tasks,
-            navigateToTaskScreen = navigateToTaskScreen
-        )
-    }
+  if (tasks is RequestState.Success){
+      if (tasks.data.isEmpty()) {
+          EmptyContent()
+      } else {
+          DisplayTasks(
+              tasks = tasks.data,
+              navigateToTaskScreen = navigateToTaskScreen
+          )
+      }
+  }
 }
 
 @ExperimentalMaterialApi
