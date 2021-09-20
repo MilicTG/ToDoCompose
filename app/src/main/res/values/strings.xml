@@ -11,4 +11,7 @@
     <string name="close_icon">Close icon</string>
     <string name="sad_face_icon">Sad face icon</string>
     <string name="no_tasks">No tasks found.</string>
+    <string name="add_task">Add task</string>
+    <string name="back_arrow">Back arrow</string>
+    <string name="add_task">Add task</string>
 </resources>
