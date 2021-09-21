@@ -2,6 +2,7 @@ package dev.milic.to_docompose.ui.screens.task
 
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import dev.milic.to_docompose.data.models.Priority
 import dev.milic.to_docompose.data.models.ToDoTask
 import dev.milic.to_docompose.util.Action
 
@@ -18,6 +19,15 @@ fun TaskScreen(
                 selectedTask = selectedTask
             )
         },
-        content = {}
+        content = {
+            TaskContent(
+                title = "",
+                description = "",
+                priority = Priority.LOW,
+                onTitleChange = {},
+                onDescriptionChange = {},
+                onPrioritySelected = {}
+            )
+        }
     )
 }
