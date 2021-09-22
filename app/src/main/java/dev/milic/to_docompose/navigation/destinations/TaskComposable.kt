@@ -1,5 +1,6 @@
 package dev.milic.to_docompose.navigation.destinations
 
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
@@ -28,9 +29,14 @@ fun NavGraphBuilder.taskComposable(
         sharedViewModel.getSelectedTask(taskId = taskId)
         val selectedTask by sharedViewModel.selectedTask.collectAsState()
 
+        LaunchedEffect(key1 = taskId) {
+            sharedViewModel.updateTaskFields(selectedTask = selectedTask)
+        }
+
         TaskScreen(
             navigateToListScreen = navigateToListScreen,
-            selectedTask = selectedTask
+            selectedTask = selectedTask,
+            sharedViewModel = sharedViewModel
         )
     }
 }

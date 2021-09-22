@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.milic.to_docompose.data.models.Priority
 import dev.milic.to_docompose.data.models.ToDoTask
 import dev.milic.to_docompose.data.repositories.ToDoRepository
 import dev.milic.to_docompose.util.RequestState
@@ -19,6 +20,11 @@ import javax.inject.Inject
 class SharedViewModel @Inject constructor(
     private val toDoRepository: ToDoRepository
 ) : ViewModel() {
+
+    val id: MutableState<Int> = mutableStateOf(value = 0)
+    val title: MutableState<String> = mutableStateOf(value = "")
+    val description: MutableState<String> = mutableStateOf(value = "")
+    val priority: MutableState<Priority> = mutableStateOf(value = Priority.LOW)
 
     val searchAppBarState: MutableState<SearchAppBarState> =
         mutableStateOf(SearchAppBarState.CLOSED)
@@ -49,6 +55,20 @@ class SharedViewModel @Inject constructor(
             toDoRepository.getSelectedTask(taskId = taskId).collect { task ->
                 _selectedTask.value = task
             }
+        }
+    }
+
+    fun updateTaskFields(selectedTask: ToDoTask?) {
+        if (selectedTask != null) {
+            id.value = selectedTask.id
+            title.value = selectedTask.title
+            description.value = selectedTask.description
+            priority.value = selectedTask.priority
+        } else {
+            id.value = 0
+            title.value = ""
+            description.value = ""
+            priority.value = Priority.LOW
         }
     }
 }
