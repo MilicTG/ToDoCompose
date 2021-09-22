@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.milic.to_docompose.data.models.Priority
 import dev.milic.to_docompose.data.models.ToDoTask
 import dev.milic.to_docompose.data.repositories.ToDoRepository
+import dev.milic.to_docompose.util.Constants.MAX_TITLE_LENGTH
 import dev.milic.to_docompose.util.RequestState
 import dev.milic.to_docompose.util.SearchAppBarState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -69,6 +70,12 @@ class SharedViewModel @Inject constructor(
             title.value = ""
             description.value = ""
             priority.value = Priority.LOW
+        }
+    }
+
+    fun updateTitle(newTitle: String){
+        if(newTitle.length < MAX_TITLE_LENGTH){
+            title.value = newTitle
         }
     }
 }
