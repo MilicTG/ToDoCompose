@@ -18,10 +18,10 @@ import dev.milic.to_docompose.ui.theme.MEDIUM_PADDING
 @Composable
 fun TaskContent(
     title: String,
-    description: String,
-    priority: Priority,
     onTitleChange: (String) -> Unit,
+    description: String,
     onDescriptionChange: (String) -> Unit,
+    priority: Priority,
     onPrioritySelected: (Priority) -> Unit
 ) {
     Column(
@@ -31,34 +31,27 @@ fun TaskContent(
             .padding(all = LARGE_PADDING)
     ) {
         OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             value = title,
             onValueChange = { onTitleChange(it) },
-            label = {
-                Text(text = stringResource(id = R.string.title))
-            },
+            label = { Text(text = stringResource(id = R.string.title)) },
             textStyle = MaterialTheme.typography.body1,
             singleLine = true
         )
         Divider(
-            modifier = Modifier
-                .height(MEDIUM_PADDING),
+            modifier = Modifier.height(MEDIUM_PADDING),
             color = MaterialTheme.colors.background
         )
         PriorityDropDown(
             priority = priority,
-            onPrioritySelected = { onPrioritySelected(priority) }
+            onPrioritySelected = onPrioritySelected
         )
         OutlinedTextField(
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             value = description,
             onValueChange = { onDescriptionChange(it) },
-            label = {
-                Text(text = stringResource(id = R.string.description))
-            },
-            textStyle = MaterialTheme.typography.body1,
+            label = { Text(text = stringResource(id = R.string.description)) },
+            textStyle = MaterialTheme.typography.body1
         )
     }
 }
