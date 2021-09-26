@@ -75,6 +75,7 @@ class SharedViewModel @Inject constructor(
             )
             toDoRepository.addTask(toDoTask)
         }
+        searchAppBarState.value = SearchAppBarState.CLOSED
     }
 
     private fun updateTask() {
@@ -98,6 +99,12 @@ class SharedViewModel @Inject constructor(
                 priority = priority.value
             )
             toDoRepository.deleteTask(toDoTask)
+        }
+    }
+
+    private fun deleteAllTasks() {
+        viewModelScope.launch(Dispatchers.IO) {
+            toDoRepository.deleteAllTasks()
         }
     }
 
@@ -129,7 +136,7 @@ class SharedViewModel @Inject constructor(
                 deleteTask()
             }
             Action.DELETE_ALL -> {
-
+                deleteAllTasks()
             }
             Action.UNDO -> {
                 addTask()
