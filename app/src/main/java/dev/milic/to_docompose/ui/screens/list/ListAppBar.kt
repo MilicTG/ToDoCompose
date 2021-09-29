@@ -40,7 +40,9 @@ fun ListAppBar(
                     sharedViewModel.searchAppBarState.value =
                         SearchAppBarState.OPENED
                 },
-                onSortClicked = {},
+                onSortClicked = {
+                    sharedViewModel.persistSortState(priority = it)
+                },
                 onDeleteAllConfirmed = {
                     sharedViewModel.action.value = Action.DELETE_ALL
                 }
@@ -102,7 +104,7 @@ fun ListAppBarActions(
         message = stringResource(id = R.string.delete_all_tasks_confirmation),
         openDialog = openDialog,
         closeDialog = { openDialog = false },
-        onYesClicked = {onDeleteAllConfirmed()}
+        onYesClicked = { onDeleteAllConfirmed() }
     )
 
     SearchAction(onSearchClicked = onSearchClicked)
