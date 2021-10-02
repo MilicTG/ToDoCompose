@@ -7,9 +7,10 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import dev.milic.to_docompose.navigation.destinations.listComposable
+import dev.milic.to_docompose.navigation.destinations.splashComposable
 import dev.milic.to_docompose.navigation.destinations.taskComposable
 import dev.milic.to_docompose.ui.viewmodels.SharedViewModel
-import dev.milic.to_docompose.util.Constants.LIST_SCREEN
+import dev.milic.to_docompose.util.Constants.SPLASH_SCREEN
 
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
@@ -24,9 +25,12 @@ fun SetupNavigation(
 
     NavHost(
         navController = navHostController,
-        startDestination = LIST_SCREEN
+        startDestination = SPLASH_SCREEN
     )
     {
+        splashComposable(
+            navigateToListScreen = screen.splash
+        )
         listComposable(
             navigateToTaskScreen = screen.task,
             sharedViewModel = sharedViewModel
