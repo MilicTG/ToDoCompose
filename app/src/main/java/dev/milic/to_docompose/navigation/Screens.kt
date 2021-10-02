@@ -13,13 +13,13 @@ class Screens(navHostController: NavHostController) {
         }
     }
 
-    val list: (Action) -> Unit = { action ->
+    val list: (Int) -> Unit = { taskId ->
+        navHostController.navigate(route = "task/$taskId")
+    }
+
+    val task: (Action) -> Unit = { action ->
         navHostController.navigate(route = "list/${action.name}") {
             popUpTo(LIST_SCREEN) { inclusive = true }
         }
-    }
-
-    val task: (Int) -> Unit = { taskId ->
-        navHostController.navigate(route = "task/$taskId")
     }
 }
