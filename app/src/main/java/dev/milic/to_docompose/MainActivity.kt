@@ -7,25 +7,25 @@ import androidx.activity.viewModels
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.milic.to_docompose.navigation.SetupNavigation
 import dev.milic.to_docompose.ui.theme.ToDoComposeTheme
 import dev.milic.to_docompose.ui.viewmodels.SharedViewModel
 
 @AndroidEntryPoint
+@ExperimentalAnimationApi
+@ExperimentalMaterialApi
 class MainActivity : ComponentActivity() {
 
     private lateinit var navHostController: NavHostController
     private val sharedViewModel: SharedViewModel by viewModels()
 
-    @ExperimentalAnimationApi
-    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ToDoComposeTheme {
-                navHostController = rememberNavController()
+                navHostController = rememberAnimatedNavController()
                 SetupNavigation(
                     navHostController = navHostController,
                     sharedViewModel = sharedViewModel

@@ -5,7 +5,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
+import com.google.accompanist.navigation.animation.AnimatedNavHost
 import dev.milic.to_docompose.navigation.destinations.listComposable
 import dev.milic.to_docompose.navigation.destinations.splashComposable
 import dev.milic.to_docompose.navigation.destinations.taskComposable
@@ -23,7 +23,7 @@ fun SetupNavigation(
         Screens(navHostController = navHostController)
     }
 
-    NavHost(
+    AnimatedNavHost(
         navController = navHostController,
         startDestination = SPLASH_SCREEN
     )
