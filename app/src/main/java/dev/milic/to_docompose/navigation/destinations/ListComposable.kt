@@ -6,8 +6,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.composable
-import androidx.navigation.compose.navArgument
 import dev.milic.to_docompose.ui.screens.list.ListScreen
 import dev.milic.to_docompose.ui.viewmodels.SharedViewModel
 import dev.milic.to_docompose.util.Constants.LIST_ARGUMENT_KEY
