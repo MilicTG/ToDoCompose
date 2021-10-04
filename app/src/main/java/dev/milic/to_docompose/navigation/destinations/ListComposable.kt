@@ -3,6 +3,7 @@ package dev.milic.to_docompose.navigation.destinations
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import com.google.accompanist.navigation.animation.composable
@@ -30,11 +31,14 @@ fun NavGraphBuilder.listComposable(
 
         val action = navBackStackEntry.arguments?.getString(LIST_ARGUMENT_KEY).toAction()
 
-        LaunchedEffect(key1 = action){
+        LaunchedEffect(key1 = action) {
             sharedViewModel.action.value = action
         }
 
+        val databaseAction by sharedViewModel.action
+
         ListScreen(
+            action = databaseAction,
             navigateToTaskScreen = navigateToTaskScreen,
             sharedViewModel = sharedViewModel
         )
