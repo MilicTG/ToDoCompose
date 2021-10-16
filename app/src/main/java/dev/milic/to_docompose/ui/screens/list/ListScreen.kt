@@ -8,7 +8,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import dev.milic.to_docompose.R
-import dev.milic.to_docompose.data.models.ToDoTask
 import dev.milic.to_docompose.ui.theme.fabBackgroundColor
 import dev.milic.to_docompose.ui.viewmodels.SharedViewModel
 import dev.milic.to_docompose.util.Action
